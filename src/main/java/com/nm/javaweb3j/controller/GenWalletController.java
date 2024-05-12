@@ -1,42 +1,31 @@
 package com.nm.javaweb3j.controller;
 
-import com.nm.javaweb3j.config.Web3JBuild;
 import com.nm.javaweb3j.entity.Response;
 import com.nm.javaweb3j.entity.Response.SUCCESS_STATUS;
+import com.nm.javaweb3j.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.methods.response.EthGetBalance;
 
 import org.springframework.http.HttpStatus;
-import org.web3j.protocol.core.methods.response.EthGetCode;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/wallet")
 public class GenWalletController {
 
     @Autowired
-    private Web3JBuild web3JBuild;
+    private WalletService walletService;
 
     @GetMapping("/check-valid-wallet-address/{waddr}")
     public ResponseEntity<Response> checkValidWalletAddress(@PathVariable String waddr) throws Exception {
         try {
-            Web3j web3j = web3JBuild.getWeb3j();
-            EthGetCode ethGetCode = web3j
-                    .ethGetCode(waddr, DefaultBlockParameter.valueOf("latest"))
-                    .sendAsync()
-                    .get(20, TimeUnit.SECONDS);
-            String code = ethGetCode.getCode();
+            String code = walletService.checkValidAddress(waddr);
 
             Response resp = new Response(SUCCESS_STATUS.TRUE, "");
             if (code != null && code.length() > 10) {
@@ -58,14 +47,7 @@ public class GenWalletController {
     @GetMapping("/fetch-balance/{waddr}")
     public ResponseEntity<Response> checkWalletBalance(@PathVariable String waddr) throws Exception {
         try {
-            Web3j web3j = web3JBuild.getWeb3j();
-            EthGetBalance ethGetbalance = web3j
-                    .ethGetBalance(waddr, DefaultBlockParameter.valueOf("latest"))
-                    .sendAsync()
-                    .get(20, TimeUnit.SECONDS);
-            BigInteger balance = ethGetbalance.getBalance();
-            BigDecimal scaled_balance = new BigDecimal(balance).divide(BigDecimal.valueOf(Math.pow(10, 18)));
-
+            BigDecimal scaled_balance = walletService.getBalance(waddr);
             Response resp = new Response(SUCCESS_STATUS.TRUE, "Balance of address : " + waddr + " : is : " + scaled_balance);
             return new ResponseEntity<Response>(resp, HttpStatus.OK);
         } catch (Exception e) {
