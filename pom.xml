@@ -48,6 +48,15 @@
 					</image>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.web3j</groupId>
+				<artifactId>web3j-maven-plugin</artifactId>
+				<version>4.11.3</version>
+				<configuration>
+					<soliditySourceFiles/>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
