@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "72bd547a-e796-46c6-8f42-77566b32996e",
+		"name": "Java-Web3J",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31958727"
+	},
+	"item": [
+		{
+			"name": "GET /chain/getId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/chain/getId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"chain",
+						"getId"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /contract/get-details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/contract/get-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"contract",
+						"get-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /contract/get-balance-of/{waddr}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/contract/get-balance-of/0x6492F71b9226d7820843f439BD03b7B42De38F5e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"contract",
+						"get-balance-of",
+						"0x6492F71b9226d7820843f439BD03b7B42De38F5e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST /contract/transfer-tokens",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"toAddr\": \"0x6492F71b9226d7820843f439BD03b7B42De38F5e\",\n    \"tokens\": 38770\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:{{port}}/contract/transfer-tokens",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"contract",
+						"transfer-tokens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /wallet/load-credentials",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/wallet/load-credentials",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"wallet",
+						"load-credentials"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /wallet/fetch-balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/wallet/fetch-balance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"wallet",
+						"fetch-balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /wallet/check-valid-wallet-address/{waddr}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/wallet/check-valid-wallet-address/0xBA70708Fb152695ddB99F7c019d9e276CfD0BFc6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"wallet",
+						"check-valid-wallet-address",
+						"0xBA70708Fb152695ddB99F7c019d9e276CfD0BFc6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /wallet/fetch-balance/{waddr}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:{{port}}/wallet/fetch-balance/0x86391F4f9AE79B11eB37B7a3F54f4725EF4e9441",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "{{port}}",
+					"path": [
+						"wallet",
+						"fetch-balance",
+						"0x86391F4f9AE79B11eB37B7a3F54f4725EF4e9441"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "port",
+			"value": "8082"
+		}
+	]
+}
